@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>IoT robot</title>
+  </head>
+  <body>
+    <h1>IoT robot controller</h1>
+    <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+    <script>
+      const client = mqtt.connect('wss://broker.emqx.io:8084/mqtt');
+    </script>
+    <div>
+      <button onclick="client.publish('***/*****',   '0')"> A </button>
+      <button onclick="client.publish('***/*****',  '90')"> B </button>
+      <button onclick="client.publish('***/*****', '180')"> C </button>
+    </div>
+  </body>
+</html>
