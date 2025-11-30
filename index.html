@@ -8,12 +8,17 @@
     <h1>IoT robot controller</h1>
     <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
     <script>
-      const client = mqtt.connect('wss://broker.emqx.io:8084/mqtt');
+      const client = mqtt.connect("wss://broker.emqx.io:8084/mqtt");
+      client.on("connect", () => client.subscribe("OIT/message", (_) => {}));
+      client.on("message", (_, m) => {
+        document.getElementById("msg").innerHTML = m;
+      });
     </script>
     <div>
-      <button onclick="client.publish('***/*****',   '0')"> A </button>
-      <button onclick="client.publish('***/*****',  '90')"> B </button>
-      <button onclick="client.publish('***/*****', '180')"> C </button>
+      <button onclick="client.publish('foo/bar', '0')">A</button>
+      <button onclick="client.publish('foo/bar', '90')">B</button>
+      <button onclick="client.publish('foo/bar', '180')">C</button>
     </div>
+    <div>message: <span id="msg"></span></div>
   </body>
 </html>
